@@ -22,17 +22,18 @@ fs.readFile("input.txt", "utf8", (err, dataString) => {
         right.push(pair[1]);
     });
 
-    for (let i = 0; i < left.length; i++) {
-        let instancesFound = 0;
-        const leftNum = left[i];
+    // Build a frequency map for `right`
+    let frequencyMap = new Map();
+    right.forEach((num) => {
+        frequencyMap.set(num, (frequencyMap.get(num) || 0) + 1);
+    });
 
-        for (let j = 0; j < right.length; j++) {
-            const rightNum = right[j];
-            if (rightNum == leftNum) {
-                instancesFound++;
-            }
-        }
+    // Calculate similarity score using the frequency map
+    for (let i = 0; i < left.length; i++) {
+        const leftNum = left[i];
+        const instancesFound = frequencyMap.get(leftNum) || 0;
         similarityScore += leftNum * instancesFound;
     }
+
     console.log(similarityScore);
 });

@@ -28,11 +28,7 @@ fs.readFile("input.txt", "utf8", (err, dataString) => {
         const rightNum = right[i];
         const leftNum = left[i];
 
-        if (rightNum > leftNum) {
-            totalDistance += rightNum - leftNum;
-        } else if (rightNum < leftNum) {
-            totalDistance += leftNum - rightNum;
-        }
+        totalDistance += Math.abs(rightNum - leftNum);
     }
     console.log(totalDistance);
 });
