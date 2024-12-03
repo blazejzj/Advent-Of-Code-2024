@@ -6,10 +6,6 @@ fs.readFile("input.txt", "utf8", (err, dataString) => {
     let right = [];
     let dataArray = [];
 
-    if (err) {
-        console.error(err);
-        return;
-    }
     dataArray = dataString.split("\n");
     dataArray.forEach((element) => {
         let pair = element

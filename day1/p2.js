@@ -6,11 +6,6 @@ fs.readFile("input.txt", "utf8", (err, dataString) => {
     let right = [];
     let dataArray = [];
 
-    if (err) {
-        console.error(err);
-        return;
-    }
-
     dataArray = dataString.split("\n");
     dataArray.forEach((element) => {
         let pair = element
@@ -22,13 +17,11 @@ fs.readFile("input.txt", "utf8", (err, dataString) => {
         right.push(pair[1]);
     });
 
-    // Build a frequency map for `right`
     let frequencyMap = new Map();
     right.forEach((num) => {
         frequencyMap.set(num, (frequencyMap.get(num) || 0) + 1);
     });
 
-    // Calculate similarity score using the frequency map
     for (let i = 0; i < left.length; i++) {
         const leftNum = left[i];
         const instancesFound = frequencyMap.get(leftNum) || 0;
